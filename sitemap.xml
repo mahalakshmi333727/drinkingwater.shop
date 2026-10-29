@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Page sitemap for https://drinkingwater.shop/
+     The site is a single page; Home, About, Services, Products,
+     Technology, Solutions and Contact are in-page sections (#anchors),
+     which are not separate URLs and so are not listed.
+     403.html and 404.html are error pages and are deliberately excluded. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://drinkingwater.shop/</loc>
+    <lastmod>2026-10-12</lastmod>
+  </url>
+  <url>
+    <loc>https://drinkingwater.shop/cookiepolicy.html</loc>
+    <lastmod>2026-10-12</lastmod>
+  </url>
+</urlset>

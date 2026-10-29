@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Image sitemap for https://drinkingwater.shop/
+     Only real, publicly reachable image files are listed. The site's
+     visuals are drawn with SVG and Three.js (not image files), so the
+     only raster image today is the social-sharing card.
+     Add a new <image:image> entry under the matching page <url> whenever
+     a real image file is added. Google now reads only <image:loc>;
+     the old title/caption/geo tags are deprecated and omitted. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://drinkingwater.shop/</loc>
+    <image:image>
+      <image:loc>https://drinkingwater.shop/assets/images/og-drinkingwater-shop.png</image:loc>
+    </image:image>
+  </url>
+</urlset>

@@ -1,0 +1,167 @@
+/* ============================================================
+   layout.css — grid, chapter scaffolding, canvas stage
+   ============================================================ */
+
+/* Ambient Three.js canvas sits behind everything */
+.stage-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.6s var(--ease);
+}
+body.is-ready .stage-canvas { opacity: 1; }
+
+main { position: relative; z-index: 1; }
+
+/* The gateway is the product experience. Chapter sections remain in the DOM
+  as the single source for overlay content, but never become a scroll page. */
+body.immersive-mode main > :not(.icon-scene),
+body.immersive-mode .meniscus,
+body.immersive-mode .gauge,
+body.immersive-mode .nav { display: none; }
+
+/* ---------- 12 column grid ---------- */
+.grid {
+  width: 100%;
+  max-width: 1680px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(1rem, 2vw, 2.4rem);
+  row-gap: var(--flow);
+  align-content: center;
+}
+
+/* ---------- chapter shell ---------- */
+.chapter {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-block: clamp(7rem, 14vh, 12rem);
+  border-top: 1px solid var(--rule);
+}
+.chapter--hero { border-top: 0; }
+
+/* Chapter numeral — set in the display serif, not a mono badge */
+.chapter__num {
+  grid-column: 1 / 2;
+  grid-row: 1;
+  align-self: start;
+  font-size: var(--t-lg);
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.55;
+}
+
+.chapter__head {
+  grid-column: 2 / 8;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--flow);
+}
+
+.chapter__aside {
+  grid-column: 9 / 13;
+  grid-row: 1;
+  align-self: end;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--flow) * 0.9);
+}
+
+/* Reserved placeholders for future Three.js scenes */
+.chapter__stage {
+  grid-column: 2 / 13;
+  grid-row: 2;
+  min-height: clamp(8rem, 22vh, 16rem);
+  border: 1px dashed var(--rule);
+  border-radius: 2px;
+  opacity: 0.45;
+}
+
+/* when a chapter already fills row 2, the scene mount drops to row 3 */
+.rooms ~ .chapter__stage,
+.scaleline ~ .chapter__stage,
+.lab ~ .chapter__stage,
+.readouts ~ .chapter__stage { grid-row: 3; }
+
+.chapter--wide .chapter__head { grid-column: 2 / 10; }
+.chapter--finale { min-height: 120svh; }
+
+/* ---------- footer ---------- */
+.footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--rule);
+  padding-block: clamp(4rem, 12vh, 9rem) clamp(2rem, 5vh, 4rem);
+  background: color-mix(in srgb, var(--bg-raised) 70%, transparent);
+  backdrop-filter: blur(14px);
+}
+.footer .grid { row-gap: clamp(2.5rem, 6vh, 5rem); }
+
+.footer__lead { grid-column: 1 / 7; }
+.footer__contact { margin-top: 2rem; max-width: 34rem; }
+.footer__contact h3 { margin-bottom: 1rem; }
+.footer__contact form { display: grid; gap: 0.55rem; }
+.footer__contact [data-contact-status] { margin: 0; color: var(--ink-soft); font-size: var(--t-sm); line-height: 1.55; }
+.footer__contact [data-contact-status]:empty { display: none; }
+.footer__contact [data-contact-status].ov-form__status--success { color: var(--accent); }
+.footer__contact [data-contact-status].ov-form__status--error { color: #b3261e; }
+.footer__contact label { color: var(--ink-soft); font-size: var(--t-sm); }
+.footer__contact input,
+.footer__contact textarea {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--glass-edge);
+  border-radius: 3px;
+  background: var(--glass-bg);
+  color: var(--ink);
+  font: inherit;
+}
+.footer__contact textarea { min-height: 7rem; resize: vertical; }
+.footer__contact input:focus-visible,
+.footer__contact textarea:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
+.footer__contact button {
+  justify-self: start;
+  margin-top: 0.5rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  color: var(--ink);
+  transition: background var(--fast) var(--ease), color var(--fast) var(--ease);
+}
+.footer__contact button:hover,
+.footer__contact button:focus-visible { background: var(--accent); color: var(--abyss); }
+.footer__nav {
+  grid-column: 9 / 13;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.footer__legal {
+  grid-column: 1 / 13;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-size: var(--t-xs);
+  color: var(--ink-soft);
+}
+
+/* Fallback when WebGL is unavailable — the page keeps its depth without
+   the scene, rather than falling back to a flat block of colour. */
+body.no-webgl {
+  background:
+    radial-gradient(90rem 60rem at 68% 18%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 62%),
+    radial-gradient(70rem 50rem at 12% 72%, color-mix(in srgb, var(--navy) 55%, transparent), transparent 60%),
+    var(--bg);
+}

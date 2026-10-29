@@ -1,0 +1,229 @@
+/* ============================================================
+   responsive.css — breakpoints, largest to smallest
+   ============================================================ */
+
+/* ---------- ≤ 1180px: gauge retracts, asides narrow ---------- */
+@media (max-width: 1180px) {
+  .gauge__name { display: none; }
+  .rooms { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .rooms li:nth-child(3) { border-right: 0; }
+  .rooms li:nth-child(-n+3) { border-bottom: 1px solid var(--rule); }
+  .readouts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .readouts article:nth-child(2) { border-right: 0; }
+  .readouts article:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+  .day { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .day li:nth-child(3) { border-right: 0; }
+  .day li:nth-child(-n+3) { border-bottom: 1px solid var(--rule); }
+}
+
+/* ---------- ≤ 960px: single column chapters ---------- */
+@media (max-width: 960px) {
+  .grid { row-gap: clamp(1.5rem, 5vh, 3rem); }
+
+  .chapter { padding-block: clamp(6rem, 12vh, 9rem); }
+
+  .chapter__num { grid-column: 1 / 13; grid-row: auto; }
+  .chapter__head,
+  .chapter__aside,
+  .chapter__stage,
+  .rooms, .scaleline, .lab, .readouts, .materials, .table-wrap, .day, .finale {
+    grid-column: 1 / 13;
+    grid-row: auto;
+  }
+  .chapter--lab .chapter__head,
+  .chapter--wide .chapter__head { grid-column: 1 / 13; }
+  #laboratory { min-height: auto; }
+  .filter-lab__head { grid-column: 1 / 13; position: static; }
+  .filter-lab__visual { grid-column: 1 / 13; grid-row: auto; position: relative; top: auto; }
+  .filter-lab__sequence { grid-column: 1 / 13; grid-row: auto; }
+  #quality { min-height: auto; }
+  .quality-lab__head { grid-column: 1 / 13; position: static; }
+  .quality-lab__visual { grid-column: 1 / 13; grid-row: auto; position: relative; top: auto; }
+  .quality-lab__sequence { grid-column: 1 / 13; grid-row: auto; }
+  #handling { min-height: auto; }
+  .handling-lab__head { grid-column: 1 / 13; position: static; }
+  .handling-lab__visual { grid-column: 1 / 13; grid-row: auto; position: relative; top: auto; }
+  .handling-lab__sequence { grid-column: 1 / 13; grid-row: auto; }
+  #storage, #materials { min-height: auto; }
+  .storage-lab__head, .materials-lab__head { grid-column: 1 / 13; position: static; }
+  .storage-lab__visual, .materials-lab__visual { grid-column: 1 / 13; grid-row: auto; position: relative; top: auto; }
+  .storage-lab__sequence, .materials-lab__choices { grid-column: 1 / 13; grid-row: auto; }
+  #comparison { min-height: auto; }
+  .comparison-lab__head { grid-column: 1 / 13; position: static; }
+  .comparison-lab__gallery { grid-column: 1 / 13; grid-row: auto; position: relative; top: auto; }
+  .comparison-lab__panel { grid-column: 1 / 13; grid-row: auto; padding-left: 0; }
+  #habits { min-height: auto; }
+  .habits-lab__head { grid-column: 1 / 13; position: static; }
+  .habits-lab__visual { grid-column: 1 / 13; grid-row: auto; position: relative; top: auto; }
+  .habits-lab__sequence { grid-column: 1 / 13; grid-row: auto; }
+  #drop { min-height: auto; }
+  .finale { grid-column: 1 / 13; }
+  .finale__stage { min-height: clamp(18rem, 48vh, 30rem); }
+  #purification { min-height: auto; }
+  .purification__head { grid-column: 1 / 13; position: static; }
+  .purification__sequence { grid-column: 1 / 13; grid-row: auto; }
+  .chapter__aside { align-self: start; }
+
+  .chapter--hero .hero__title { font-size: clamp(2.6rem, 2rem + 8vw, 5.6rem); }
+  .hero__panel { max-width: 34rem; }
+
+  .footer__lead, .footer__nav { grid-column: 1 / 13; }
+
+  .gauge { display: none; }
+  .control__label { display: none; }
+  .control { padding: 0.55rem; }
+}
+
+/* ---------- ≤ 720px: stacked lists, compact chrome ---------- */
+@media (max-width: 720px) {
+  .rooms, .readouts, .day { grid-template-columns: 1fr; }
+  .rooms li, .day li, .readouts article {
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+    padding-right: 0;
+  }
+  .rooms p, .day p, .readouts p:last-child { max-width: 46ch; }
+
+  .purification { row-gap: 2.5rem; }
+  .purification__sequence { padding-left: 1.5rem; }
+  .purification__progress { left: 0.2rem; }
+  .purification__stage-card::before { left: -1.5rem; }
+  .purification__stage-card button { grid-template-columns: 2rem 1fr; gap: 0.65rem; padding-inline: 0.7rem; }
+  .purification__stage-card button:hover { transform: none; }
+
+  .filter-lab { row-gap: 2.5rem; }
+  .filter-lab__visual { min-height: 15rem; }
+  .filter-lab__sequence { padding-left: 1.5rem; }
+  .filter-lab__rail { left: 0.2rem; }
+  .filter-lab__stage::before { left: -1.5rem; }
+  .filter-lab__stage button { grid-template-columns: 2rem 1fr; gap: 0.55rem; padding-inline: 0.65rem; }
+  .filter-lab__stage button:hover { transform: none; }
+
+  .quality-lab { row-gap: 2.5rem; }
+  .quality-lab__visual { min-height: 15rem; }
+  .quality-lab__sequence { padding-left: 1.5rem; }
+  .quality-lab__rail { left: 0.2rem; }
+  .quality-lab__parameter::before { left: -1.5rem; }
+  .quality-lab__parameter button { grid-template-columns: 2rem 1fr; gap: 0.55rem; padding-inline: 0.65rem; }
+  .quality-lab__parameter button:hover { transform: none; }
+  .quality-lab__sample--a { left: 24%; }
+  .quality-lab__sample--b { right: 24%; }
+
+  .handling-lab { row-gap: 2.5rem; }
+  .handling-lab__visual { min-height: 15rem; }
+  .handling-lab__sequence { padding-left: 1.5rem; }
+  .handling-lab__rail { left: 0.2rem; }
+  .handling-lab__stage::before { left: -1.5rem; }
+  .handling-lab__stage button { grid-template-columns: 2rem 1fr; gap: 0.55rem; padding-inline: 0.65rem; }
+  .handling-lab__stage button:hover { transform: none; }
+
+  .storage-lab, .materials-lab { row-gap: 2.5rem; }
+  .storage-lab__visual, .materials-lab__visual { min-height: 15rem; }
+  .storage-lab__sequence, .materials-lab__choices { padding-left: 1.5rem; }
+  .storage-lab__rail { left: 0.2rem; }
+  .storage-lab__principle::before, .materials-lab__list li::before { left: -1.5rem; }
+  .storage-lab__principle button, .materials-lab__list button { grid-template-columns: 2rem 1fr; gap: 0.55rem; padding-inline: 0.65rem; }
+  .storage-lab__principle button:hover, .materials-lab__list button:hover { transform: none; }
+
+  .comparison-lab { row-gap: 2.5rem; }
+  .comparison-lab__gallery { min-height: 15rem; }
+  .comparison-lab__panel { padding-inline: 0; }
+  .comparison-lab__materials { grid-template-columns: 1fr 1fr; }
+  .comparison-lab__materials button:hover { transform: none; }
+  .comparison-lab__attributes div { grid-template-columns: 1fr 1fr; }
+
+  .habits-lab { row-gap: 2.5rem; }
+  .habits-lab__visual { min-height: 15rem; }
+  .habits-lab__sequence { padding-left: 1.5rem; }
+  .habits-lab__rail { left: 0.2rem; }
+  .habits-lab__habit::before { left: -1.5rem; }
+  .habits-lab__habit button { grid-template-columns: 2rem 1fr; gap: 0.55rem; padding-inline: 0.65rem; }
+  .habits-lab__habit button:hover { transform: none; }
+
+  .finale { gap: 2.5rem; }
+  .finale__journey { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 1.2rem; }
+  .finale__journey li { padding-top: 0.75rem; }
+  .finale__stage { min-height: 18rem; }
+  .finale__actions { flex-direction: column; align-items: stretch; }
+  .finale__actions .hero__btn { width: 100%; }
+
+  .scaleline ul { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.75rem; }
+
+  .nav__list {
+    position: fixed;
+    inset: auto var(--gutter) var(--gutter) var(--gutter);
+    min-width: 0;
+    max-height: 60svh;
+    overflow-y: auto;
+    background: transparent;
+    box-shadow: none;
+  }
+  .nav__list a { padding: 0.6rem 0.7rem; font-size: var(--t-base); background: transparent; }
+
+  .topbar { padding-block: 0.8rem; }
+  .mark__text { font-size: var(--t-base); }
+  .hero__frame { padding-top: clamp(5rem, 16vh, 7rem); }
+  .hero__actions { flex-direction: column; align-items: flex-start; }
+  .hero__btn { width: 100%; }
+  .hero__panel { border-radius: 4px 14px 14px 4px; }
+  .chapter--finale { min-height: 100svh; }
+}
+
+@media (max-width: 720px) {
+  .immersive-mode .nav__list {
+    top: calc(5.6rem + 40px);
+    left: var(--gutter);
+    right: var(--gutter);
+    width: auto;
+    max-height: calc(100svh - 7rem - 40px);
+  }
+  .immersive-mode .nav__list a,
+  .immersive-mode .nav__list .nav__link {
+    padding-block: 0.58rem;
+    font-size: clamp(1.15rem, 5.4vw, 2rem);
+    line-height: 1;
+  }
+  body.immersive-mode.nav-open .nav__toggle { top: 0.8rem; left: var(--gutter); right: auto; }
+}
+
+/* ---------- ≤ 420px ---------- */
+@media (max-width: 420px) {
+  .topbar { gap: 0.25rem; padding-inline: 0.7rem; }
+  .mark { gap: 0.35rem; min-width: 0; }
+  .mark__drop { width: 7px; height: 7px; }
+  .mark__text { font-size: 0.9rem; white-space: nowrap; }
+  .nav__toggle { padding-inline: 0.55rem; }
+  .controls { gap: 0.25rem; flex: none; }
+  .control { padding: 0.5rem; }
+  .scaleline ul { grid-template-columns: 1fr; }
+  .footer__nav { grid-template-columns: 1fr; gap: 2rem; }
+  .footer__legal { flex-direction: column; gap: 0.4rem; }
+}
+
+@media (max-width: 340px) {
+  .nav__toggle { width: 2.5rem; justify-content: center; padding-inline: 0.45rem; }
+  .nav__toggle-label { display: none; }
+}
+
+/* ---------- pointer-coarse tuning ---------- */
+@media (hover: none) {
+  .lab__layers button:hover { padding-left: 0; }
+  .compare tbody tr:hover { background: none; }
+}
+
+/* ---------- print ---------- */
+@media print {
+  .topbar, .gauge, .meniscus, .loader, .stage-canvas { display: none !important; }
+  .chapter { min-height: auto; page-break-inside: avoid; }
+}
+
+/* ---------- utility pages (403 / 404 / cookie policy) ---------- */
+@media (max-width: 720px) {
+  /* Error panel: let the buttons fill the width so they stay easy to tap */
+  .utility-page__actions .hero__btn { flex: 1 1 100%; }
+}
+@media (max-width: 420px) {
+  /* Keep the large error code from overflowing 390px-wide phones */
+  .utility-page__code { font-size: clamp(3.2rem, 22vw, 5rem); }
+  .utility-page__panel { border-radius: 1rem; }
+}

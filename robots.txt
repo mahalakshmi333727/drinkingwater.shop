@@ -1,0 +1,10 @@
+# robots.txt for https://drinkingwater.shop/
+# Everything public may be crawled. CSS, JS, 3D models and images
+# are intentionally NOT blocked so search engines can render the page.
+
+User-agent: *
+Allow: /
+
+# Sitemaps (absolute URLs required)
+Sitemap: https://drinkingwater.shop/sitemap.xml
+Sitemap: https://drinkingwater.shop/sitemap.images.xml

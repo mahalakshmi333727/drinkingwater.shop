@@ -1,0 +1,41 @@
+/* about.css — scoped premium utility and About off-canvas layer */
+
+.dws-about-trigger { color: var(--ink-soft); transition: color var(--fast) var(--ease), opacity var(--fast) var(--ease), transform var(--fast) var(--ease); }
+.dws-about-trigger { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.45rem 0; font-size: 0.68rem; letter-spacing: 0.16em; }
+.dws-about-trigger i { width: 1.6rem; height: 1px; background: currentColor; transition: width var(--fast) var(--ease); }
+.dws-about-trigger:hover { color: var(--ink); }
+.dws-about-trigger:hover i { width: 2.1rem; }
+
+.dws-about { position: fixed; inset: 0; z-index: 210; display: flex; justify-content: flex-end; pointer-events: none; }
+.dws-about[hidden] { display: none; }
+.dws-about-overlay { position: absolute; inset: 0; background: rgba(2, 8, 15, 0.42); backdrop-filter: blur(3px); opacity: 0; transition: opacity 0.55s var(--ease); pointer-events: auto; }
+.dws-about-panel { position: relative; z-index: 1; width: min(30rem, 42vw); height: 100%; overflow-y: auto; overscroll-behavior: contain; padding: clamp(4.5rem, 10vh, 7rem) clamp(1.7rem, 4vw, 4rem) 3rem; border-left: 1px solid rgba(215, 233, 244, 0.18); background: color-mix(in srgb, var(--abyss) 91%, transparent); box-shadow: -2rem 0 5rem rgba(2, 8, 15, 0.24); backdrop-filter: blur(22px) saturate(1.1); opacity: 0; transform: translateX(105%); transition: opacity 0.45s var(--ease), transform 0.7s var(--ease); pointer-events: auto; }
+.dws-about.is-open .dws-about-overlay { opacity: 1; }
+.dws-about.is-open .dws-about-panel { opacity: 1; transform: translateX(0); }
+.dws-about-close { position: absolute; top: 1.25rem; right: 1.25rem; width: 2.5rem; height: 2.5rem; display: grid; place-items: center; color: var(--ice); border: 1px solid rgba(215, 233, 244, 0.22); border-radius: 50%; font-size: 1.55rem; font-weight: 300; transition: color var(--fast), border-color var(--fast), transform var(--fast); }
+.dws-about-close:hover { color: var(--aqua); border-color: var(--aqua); transform: rotate(90deg); }
+.dws-about-panel__inner { display: grid; gap: 1.45rem; color: var(--ice); }
+.dws-about-panel__eyebrow, .dws-about-panel__label, .dws-about-panel__footer { color: var(--aqua); font-size: 0.68rem; letter-spacing: 0.18em; line-height: 1.4; }
+.dws-about-panel__title { max-width: 100%; overflow-wrap: anywhere; word-break: break-word; font-family: var(--display); font-size: clamp(2.2rem, 4vw, 4.2rem); font-weight: 400; line-height: 0.94; letter-spacing: -0.02em; }
+.dws-about-panel__intro { font-size: var(--t-md); line-height: 1.3; }
+.dws-about-panel__intro em { color: var(--aqua); font-family: var(--display); font-size: 1.15em; }
+.dws-about-panel__copy { max-width: 37ch; overflow-wrap: anywhere; color: rgba(215, 233, 244, 0.68); font-size: var(--t-sm); line-height: 1.65; }
+.dws-about-panel__section { display: grid; gap: 0.75rem; padding-top: 1.25rem; border-top: 1px solid rgba(215, 233, 244, 0.16); }
+.dws-about-panel__statement { font-family: var(--display); font-size: var(--t-md); line-height: 1.15; }
+.dws-about-steps { display: grid; gap: 0.7rem; margin-top: 0.35rem; }
+.dws-about-steps li { display: grid; grid-template-columns: 2.2rem 1fr; gap: 0.7rem; align-items: baseline; color: rgba(215, 233, 244, 0.62); font-size: var(--t-xs); letter-spacing: 0.14em; border-bottom: 1px solid rgba(215, 233, 244, 0.08); padding-bottom: 0.55rem; }
+.dws-about-steps span { color: var(--aqua); font-variant-numeric: tabular-nums; }
+.dws-about-steps strong { font-weight: 400; }
+.dws-about-panel__footer { padding-top: 1.3rem; opacity: 0.65; }
+.dws-about.is-open .dws-about-panel__inner > * { animation: dws-about-reveal 0.55s var(--ease) both; }
+.dws-about.is-open .dws-about-panel__inner > *:nth-child(2) { animation-delay: 0.06s; }
+.dws-about.is-open .dws-about-panel__inner > *:nth-child(3) { animation-delay: 0.12s; }
+.dws-about.is-open .dws-about-panel__inner > *:nth-child(4) { animation-delay: 0.18s; }
+.dws-about.is-open .dws-about-panel__inner > *:nth-child(5) { animation-delay: 0.24s; }
+.dws-about.is-open .dws-about-panel__inner > *:nth-child(6) { animation-delay: 0.3s; }
+@keyframes dws-about-reveal { from { opacity: 0; transform: translateY(0.7rem); } to { opacity: 1; transform: none; } }
+body.dws-about-open { overflow: hidden; }
+
+@media (max-width: 960px) { .dws-about-panel { width: min(78vw, 30rem); } }
+@media (max-width: 600px) { .dws-about-panel { width: 92vw; padding: 4.5rem 1.35rem 2.5rem; } .dws-about-panel__title { font-size: clamp(2.1rem, 11vw, 3.4rem); } }
+@media (prefers-reduced-motion: reduce) { .dws-about.is-open .dws-about-panel__inner > * { animation: none; } }
